@@ -3,12 +3,14 @@
 Job Search Automation Tool - Main Orchestrator
 
 This script coordinates the entire job search pipeline:
-1. Scrapes jobs from multiple sources (Indeed RSS, RemoteOK, The Muse, Adzuna)
-2. Filters jobs based on hard criteria (no degree required, entry-level, etc.)
-3. Deduplicates against previously sent jobs
-4. Sends email notification only if new qualifying jobs are found
+1. Scrapes part-time jobs from multiple sources
+2. Filters for teen-friendly positions (no degree, part-time, local)
+3. Includes retail, food service, summer jobs, and beginner tech internships
+4. Deduplicates against previously sent jobs
+5. Sends email notification only if new qualifying jobs are found
 
 Designed to run daily via GitHub Actions at 8:00 PM Eastern Time.
+Focused on Kitchener-Waterloo area for a 17-year-old job seeker.
 
 Author: Job Search Automation Tool
 License: MIT
@@ -22,7 +24,7 @@ from typing import List, Dict
 # Add src to path for imports
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from src.scrapers import IndeedRSSScraper, RemoteOKScraper, TheMuseScraper, AdzunaScraper
+from src.scrapers import IndeedRSSScraper, RemoteOKScraper, TheMuseScraper, AdzunaScraper, LocalJobsScraper
 from src.job_processor import JobProcessor
 from src.deduplication import JobDeduplicator
 from src.email_sender import EmailSender
@@ -31,7 +33,9 @@ from src.email_sender import EmailSender
 def print_banner():
     """Print startup banner."""
     print("=" * 60)
-    print("  🚀 JOB SEARCH AUTOMATION TOOL")
+    print("  🎯 PART-TIME JOB SEARCH TOOL")
+    print("  Focus: Retail, Summer Jobs, Beginner Tech")
+    print("  Area: Kitchener-Waterloo-Cambridge")
     print("=" * 60)
     print(f"  Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
@@ -41,22 +45,26 @@ def print_banner():
 def scrape_all_sources() -> List[Dict]:
     """
     Run all scrapers and collect jobs from all sources.
+    Prioritizes local part-time opportunities.
     
     Returns:
         Combined list of jobs from all sources
     """
     all_jobs = []
     
-    # Initialize scrapers
+    # Initialize scrapers - Local jobs first, then online sources
     scrapers = [
-        ("Indeed RSS", IndeedRSSScraper()),
-        ("RemoteOK", RemoteOKScraper()),
-        ("The Muse", TheMuseScraper()),
+        ("Local Jobs", LocalJobsScraper()),  # Known local employers
+        ("Indeed RSS", IndeedRSSScraper()),  # Part-time searches
+        ("The Muse", TheMuseScraper()),      # Internships only
+        # RemoteOK disabled - mostly full-time remote tech jobs
+        # ("RemoteOK", RemoteOKScraper()),
+        # Adzuna optional - requires API key
         ("Adzuna", AdzunaScraper()),
     ]
     
     print("\n" + "=" * 40)
-    print("PHASE 1: SCRAPING JOB SOURCES")
+    print("PHASE 1: FINDING PART-TIME JOBS")
     print("=" * 40)
     
     for name, scraper in scrapers:

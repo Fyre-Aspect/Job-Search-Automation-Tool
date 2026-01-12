@@ -1,40 +1,19 @@
 {
   "sent_hashes": [
-    "c0c885b307754279",
-    "c7f2cc188e3582a0",
-    "e2c22a9e3a9e1583",
-    "eb30c082f9ae7cfe",
-    "efac7c2d193e2431",
-    "c3f9341f2688a30b",
-    "3339e4946dd906c6",
-    "8b2f43a370ce99c8",
-    "bb922a4e16bef74b",
-    "40496b7eeef183a8",
-    "8edabc1a37cf2679",
-    "62aa8f5683059386",
-    "7e33fcb59339e33f",
-    "39430005c33a8835",
-    "38a87f5804cc3a57",
-    "b0b2f2fbd17703a3",
-    "225f5c6c57f81eee",
-    "d645877ca639b3a9",
-    "c774a1444f075b24",
-    "6c166413ce7ec231",
-    "fdd99ad7e2555672",
-    "9c7cab59110bd10b",
-    "89991ea84582b164",
-    "7c808c4a5bcd2ece",
-    "0716b6171b4cfd19",
-    "747a51027fccbd96",
-    "e87b33999d8eb0ab",
-    "ac413ce4a9365ddb"
+    "44362eefcca3dd3b",
+    "7b8333c50f1bfa68",
+    "1d56b4b2b9eaafb1",
+    "07d5ccd3f8ddae21",
+    "eb3d1c14ec3e4392",
+    "7ef1db3066417ecf",
+    "e036442f84f469b8",
+    "8c4a35e790f53276"
   ],
   "metadata": {
-    "last_updated": "2026-01-11T19:35:47.286651",
-    "total_jobs_sent": 0,
-    "created_at": "2026-01-11T00:00:00",
-    "note": "This file is auto-managed by the job search tool. Do not edit manually.",
-    "last_sent_date": "2026-01-11T19:35:47.286641",
-    "last_batch_count": 28
+    "last_updated": "2026-01-11T19:51:30.199062",
+    "total_jobs_sent": 8,
+    "note": "Reset for new job search focus",
+    "last_sent_date": "2026-01-11T19:51:30.199047",
+    "last_batch_count": 8
   }
 }

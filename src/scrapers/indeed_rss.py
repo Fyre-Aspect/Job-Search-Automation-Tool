@@ -15,29 +15,52 @@ class IndeedRSSScraper:
     """
     Scrapes job listings from Indeed using their public RSS feed.
     No authentication required.
+    Focused on part-time jobs for teens/students.
     """
     
     BASE_URL = "https://www.indeed.com/rss"
     
-    # Keywords to search for
+    # Keywords to search for - Part-time, retail, summer, and beginner tech jobs
     SEARCH_QUERIES = [
-        "junior web developer",
-        "junior software developer", 
-        "software engineer intern",
-        "web developer intern",
-        "entry level developer",
-        "frontend developer entry level",
-        "backend developer junior",
-        "full stack developer junior",
-        "software developer internship",
-        "junior programmer",
+        # Retail jobs
+        "part time retail",
+        "footlocker part time",
+        "foot locker",
+        "bluenotes",
+        "sales associate part time",
+        "cashier part time",
+        "store associate",
+        "retail associate",
+        # Food service
+        "part time restaurant",
+        "barista part time",
+        "tim hortons",
+        "mcdonalds crew",
+        "subway sandwich artist",
+        # Summer jobs
+        "summer job student",
+        "summer camp counselor",
+        "lifeguard",
+        "summer student",
+        # Entry-level tech (simple)
+        "web developer intern part time",
+        "IT helpdesk part time",
+        "tech support part time",
+        "junior web developer part time",
+        # General part-time
+        "part time student",
+        "no experience part time",
+        "first job",
+        "hiring immediately part time",
     ]
     
-    # Locations to search
+    # Locations to search - Local area only
     LOCATIONS = [
-        "remote",
         "Kitchener, ON",
         "Waterloo, ON",
+        "Cambridge, ON",
+        "remote"
+        "hybrid"
     ]
     
     def __init__(self):
@@ -139,14 +162,16 @@ class IndeedRSSScraper:
             return None
     
     def _extract_skills(self, text: str) -> str:
-        """Extract mentioned technical skills from job description."""
+        """Extract mentioned skills from job description."""
         skill_keywords = [
-            'JavaScript', 'Python', 'Java', 'C#', 'C++', 'Ruby', 'Go', 'Rust',
-            'React', 'Angular', 'Vue', 'Node.js', 'Express', 'Django', 'Flask',
-            'HTML', 'CSS', 'TypeScript', 'SQL', 'MongoDB', 'PostgreSQL', 'MySQL',
-            'AWS', 'Azure', 'GCP', 'Docker', 'Kubernetes', 'Git', 'Linux',
-            'REST API', 'GraphQL', '.NET', 'Spring', 'PHP', 'Laravel',
-            'TailwindCSS', 'Bootstrap', 'SASS', 'Redux', 'Next.js'
+            # Basic tech skills
+            'HTML', 'CSS', 'JavaScript', 'Python', 'Git',
+            # Retail/service skills
+            'Customer Service', 'Cash Handling', 'POS', 'Sales',
+            'Communication', 'Teamwork', 'Organization',
+            # General skills
+            'Microsoft Office', 'Computer Skills', 'Data Entry',
+            'Inventory', 'Stocking', 'Cleaning',
         ]
         
         found_skills = []
@@ -156,26 +181,31 @@ class IndeedRSSScraper:
             if skill.lower() in text_lower:
                 found_skills.append(skill)
         
-        return ', '.join(found_skills[:8]) if found_skills else "Not specified"
+        return ', '.join(found_skills[:6]) if found_skills else "No specific skills required"
     
     def _determine_job_type(self, title: str, description: str) -> str:
         """Determine the job type from title and description."""
-        text = (title + " " + description).lower()
+        job_type = ""
         
+        # Primary type
         if 'intern' in text:
-            return 'Internship'
-        elif 'entry level' in text or 'entry-level' in text:
-            return 'Entry-Level'
-        elif 'junior' in text or 'jr.' in text or 'jr ' in text:
-            return 'Junior'
+            job_type = 'Internship'
         elif 'summer' in text:
-            return 'Summer Position'
-        elif 'contract' in text:
-            return 'Contract'
-        elif 'part-time' in text or 'part time' in text:
-            return 'Part-Time'
+            job_type = 'Summer Job'
+        elif 'retail' in text or 'sales associate' in text or 'cashier' in text:
+            job_type = 'Retail'
+        elif 'restaurant' in text or 'food' in text or 'barista' in text:
+            job_type = 'Food Service'
+        elif 'entry level' in text or 'entry-level' in text:
+            job_type = 'Entry-Level'
         else:
-            return 'Full-Time'
+            job_type = 'General'
+        
+        # Add part-time indicator if present
+        if 'part-time' in text or 'part time' in text:
+            job_type = f"Part-Time {job_type}"
+        
+        return job_type
     
     def _extract_compensation(self, text: str) -> str:
         """Extract compensation information if available."""

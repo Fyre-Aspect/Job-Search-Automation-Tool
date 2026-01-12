@@ -158,7 +158,7 @@ class EmailSender:
             return False
         
         recipient = recipient or self.recipient_email
-        subject = "New Remote & Entry-Level Developer Opportunities"
+        subject = "🎯 Part-Time Jobs & Summer Opportunities Near You!"
         
         print(f"[Email] Preparing to send {len(jobs)} jobs to {recipient}")
         

@@ -14,16 +14,22 @@ class RemoteOKScraper:
     """
     Scrapes remote job listings from RemoteOK's free public API.
     Returns JSON data directly, no authentication required.
+    Filtered for beginner-friendly part-time tech roles.
     """
     
     API_URL = "https://remoteok.com/api"
     
-    # Tags/keywords to filter for relevant jobs
+    # Tags/keywords to filter for beginner-friendly jobs only
     TARGET_TAGS = [
-        'dev', 'developer', 'engineer', 'software', 'web', 
-        'frontend', 'backend', 'fullstack', 'full-stack',
-        'junior', 'entry', 'intern', 'javascript', 'python',
-        'react', 'node', 'typescript'
+        'junior', 'entry', 'intern', 'part-time', 'parttime',
+        'html', 'css', 'wordpress', 'shopify', 'wix',
+        'no-experience', 'beginner', 'student'
+    ]
+    
+    # Exclude senior/complex roles
+    EXCLUDE_TAGS = [
+        'senior', 'lead', 'architect', 'principal', 'staff',
+        'manager', 'director', 'expert', '5-years', '3-years'
     ]
     
     def __init__(self):
@@ -34,7 +40,7 @@ class RemoteOKScraper:
         })
     
     def _is_relevant_job(self, job: Dict) -> bool:
-        """Check if job matches our target criteria."""
+        """Check if job matches our target criteria - beginner-friendly only."""
         # Combine searchable text
         searchable = (
             job.get('position', '') + ' ' +
@@ -42,7 +48,11 @@ class RemoteOKScraper:
             ' '.join(job.get('tags', []))
         ).lower()
         
-        # Must match at least one target tag
+        # Exclude senior/complex roles
+        if any(tag in searchable for tag in self.EXCLUDE_TAGS):
+            return False
+        
+        # Must match at least one target tag (beginner-friendly)
         return any(tag in searchable for tag in self.TARGET_TAGS)
     
     def _is_recent(self, date_str: str, days: int = 7) -> bool:

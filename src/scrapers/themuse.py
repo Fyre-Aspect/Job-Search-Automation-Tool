@@ -13,23 +13,20 @@ import time
 class TheMuseScraper:
     """
     Scrapes job listings from The Muse's free public API.
-    No authentication required for basic access.
+    Filtered for internships only - suitable for teens/students.
     """
     
     BASE_URL = "https://www.themuse.com/api/public/jobs"
     
-    # Categories relevant to software/web development
+    # Categories relevant to beginner roles
     CATEGORIES = [
-        "Software Engineering",
-        "Software Engineer",
-        "Data and Analytics",
-        "Design and UX",
         "IT",
+        "Customer Service",
+        "Retail",
     ]
     
-    # Experience levels to target
+    # Experience levels to target - ONLY internship
     LEVELS = [
-        "Entry Level",
         "Internship",
     ]
     
