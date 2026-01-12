@@ -23,7 +23,9 @@ class RemoteOKScraper:
     TARGET_TAGS = [
         'junior', 'entry', 'intern', 'part-time', 'parttime',
         'html', 'css', 'wordpress', 'shopify', 'wix',
-        'no-experience', 'beginner', 'student'
+        'no-experience', 'beginner', 'student', 'react', 'vue',
+      'frontend', 'backend', 'fullstack', 'python', 'javascript', 'reactjs',
+      'nodejs', 'nodejs', 'research', 'data entry', 'customer service'
     ]
     
     # Exclude senior/complex roles
