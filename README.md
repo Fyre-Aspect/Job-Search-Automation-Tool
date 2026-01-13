@@ -1,15 +1,15 @@
-# 🚀 Job Search Automation Tool
+#Job Search Automation Tool
 
 Automated daily job search system that scrapes entry-level developer positions and emails new matches.
 
 ## Features
 
-- **🔍 Multi-Source Scraping**: Indeed RSS, RemoteOK, The Muse, Adzuna (optional)
-- **🎯 Smart Filtering**: Excludes senior roles, degree requirements, 3+ years experience
-- **📍 Location Aware**: Remote jobs globally, on-site only for Kitchener-Waterloo
-- **📧 Email Alerts**: Beautiful HTML emails with job details
-- **🔄 Deduplication**: Never sends the same job twice
-- **⏰ Automated**: Runs daily at 8:00 PM Eastern via GitHub Actions
+- ** Multi-Source Scraping**: Indeed RSS, RemoteOK, The Muse, Adzuna (optional)
+- ** Smart Filtering**: Excludes senior roles, degree requirements, 3+ years experience
+- ** Location Aware**: Remote jobs globally, on-site only for Kitchener-Waterloo
+- ** Email Alerts**: Beautiful HTML emails with job details
+- ** Deduplication**: Never sends the same job twice
+- ** Automated**: Runs daily at 8:00 PM Eastern via GitHub Actions
 
 ## Quick Start
 
@@ -28,11 +28,11 @@ Add these secrets:
 
 | Secret Name | Value | Required |
 |-------------|-------|----------|
-| `GMAIL_USER` | Your Gmail address | ✅ Yes |
-| `GMAIL_APP_PASSWORD` | 16-character app password | ✅ Yes |
-| `RECIPIENT_EMAIL` | Email to receive alerts (defaults to GMAIL_USER) | ❌ Optional |
-| `ADZUNA_APP_ID` | Adzuna API ID | ❌ Optional |
-| `ADZUNA_APP_KEY` | Adzuna API Key | ❌ Optional |
+| `GMAIL_USER` | Your Gmail address |  Yes |
+| `GMAIL_APP_PASSWORD` | 16-character app password |  Yes |
+| `RECIPIENT_EMAIL` | Email to receive alerts (defaults to GMAIL_USER) |  Optional |
+| `ADZUNA_APP_ID` | Adzuna API ID |  Optional |
+| `ADZUNA_APP_KEY` | Adzuna API Key |  Optional |
 
 ### 3. Generate Gmail App Password
 
@@ -86,19 +86,19 @@ Job-Search-Automation-Tool/
 - Software/Web Engineering Intern
 
 ### Hard Filters (Auto-Exclude)
-- ❌ Requires bachelor's degree
-- ❌ Requires university enrollment
-- ❌ Mid-level or senior positions
-- ❌ Requires 3+ years experience
+-  Requires bachelor's degree
+-  Requires university enrollment
+-  Mid-level or senior positions
+-  Requires 3+ years experience
 
 ### Preferred Criteria
-- ✅ Entry-level or beginner-friendly
-- ✅ Open to self-taught developers
-- ✅ Skills-based or portfolio-based
+-  Entry-level or beginner-friendly
+-  Open to self-taught developers
+-  Skills-based or portfolio-based
 
 ### Location Rules
-- 🌍 Remote: Global or North America
-- 📍 On-site: Kitchener-Waterloo, Ontario only
+-  Remote: Global or North America
+-  On-site: Kitchener-Waterloo, Ontario only
 
 ## Local Development
 
