@@ -87,13 +87,14 @@ jobs:
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL || 'aamirtinwala7@gmail.com' }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
           # Optional: Adzuna API credentials
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
           PYTHONUNBUFFERED: '1'
         run: |
           echo "Starting job search at $(date)"
+          echo "Email configured: ${{ secrets.GMAIL_USER != '' && secrets.GMAIL_APP_PASSWORD != '' }}"
           python main.py
           echo "Job search completed at $(date)"
       
