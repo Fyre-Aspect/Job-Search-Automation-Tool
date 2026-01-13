@@ -185,6 +185,7 @@ class IndeedRSSScraper:
     
     def _determine_job_type(self, title: str, description: str) -> str:
         """Determine the job type from title and description."""
+        text = (title + ' ' + description).lower()
         job_type = ""
         
         # Primary type

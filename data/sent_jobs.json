@@ -1,19 +1,8 @@
 {
-  "sent_hashes": [
-    "44362eefcca3dd3b",
-    "7b8333c50f1bfa68",
-    "1d56b4b2b9eaafb1",
-    "07d5ccd3f8ddae21",
-    "eb3d1c14ec3e4392",
-    "7ef1db3066417ecf",
-    "e036442f84f469b8",
-    "8c4a35e790f53276"
-  ],
+  "sent_hashes": [],
   "metadata": {
-    "last_updated": "2026-01-11T19:51:30.199062",
-    "total_jobs_sent": 8,
-    "note": "Reset for new job search focus",
-    "last_sent_date": "2026-01-11T19:51:30.199047",
-    "last_batch_count": 8
+    "last_updated": "2026-01-12T00:00:00.000000",
+    "total_jobs_sent": 0,
+    "note": "Reset to receive emails - previous jobs were all duplicates"
   }
 }

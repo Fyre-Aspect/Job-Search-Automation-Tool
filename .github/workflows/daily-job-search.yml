@@ -95,8 +95,14 @@ jobs:
         run: |
           echo "Starting job search at $(date)"
           echo "Email configured: ${{ secrets.GMAIL_USER != '' && secrets.GMAIL_APP_PASSWORD != '' }}"
+          echo "Recipient: ${{ secrets.RECIPIENT_EMAIL }}"
+          echo "--- Current sent_jobs.json before run ---"
+          cat data/sent_jobs.json || echo "No sent_jobs.json file yet"
+          echo "---"
           python main.py
           echo "Job search completed at $(date)"
+          echo "--- sent_jobs.json after run ---"
+          cat data/sent_jobs.json || echo "No sent_jobs.json file"
       
       # =================================
       # PERSIST DEDUPLICATION DATA
